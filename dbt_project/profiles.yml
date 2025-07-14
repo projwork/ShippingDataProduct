@@ -1,0 +1,27 @@
+ethiopian_medical_data:
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('POSTGRES_HOST') }}"
+      user: "{{ env_var('POSTGRES_USERNAME') }}"
+      password: "{{ env_var('POSTGRES_PASSWORD') }}"
+      port: "{{ env_var('POSTGRES_PORT') | int }}"
+      dbname: "{{ env_var('POSTGRES_DATABASE') }}"
+      schema: "{{ env_var('POSTGRES_STAGING_SCHEMA') }}"
+      threads: 4
+      keepalives_idle: 0
+      search_path: "{{ env_var('POSTGRES_RAW_SCHEMA') }},{{ env_var('POSTGRES_STAGING_SCHEMA') }},{{ env_var('POSTGRES_MARTS_SCHEMA') }},public"
+
+    prod:
+      type: postgres
+      host: "{{ env_var('POSTGRES_HOST') }}"
+      user: "{{ env_var('POSTGRES_USERNAME') }}"
+      password: "{{ env_var('POSTGRES_PASSWORD') }}"
+      port: "{{ env_var('POSTGRES_PORT') | int }}"
+      dbname: "{{ env_var('POSTGRES_DATABASE') }}"
+      schema: "{{ env_var('POSTGRES_MARTS_SCHEMA') }}"
+      threads: 8
+      keepalives_idle: 0
+      search_path: "{{ env_var('POSTGRES_RAW_SCHEMA') }},{{ env_var('POSTGRES_STAGING_SCHEMA') }},{{ env_var('POSTGRES_MARTS_SCHEMA') }},public"
+
+  target: dev
