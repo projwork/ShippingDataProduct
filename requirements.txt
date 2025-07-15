@@ -55,3 +55,6 @@ loguru>=0.7.0
 psycopg2-binary>=2.9.0
 dbt-postgres>=1.5.0
 SQLAlchemy>=2.0.0
+
+# Object Detection (YOLO)
+ultralytics>=8.0.0
